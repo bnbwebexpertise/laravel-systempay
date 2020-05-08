@@ -98,10 +98,6 @@ class Systempay
         $str = implode('+', $this->params).'+'.$this->key;
 
         if ($this->algo === 'sha256') {
-            if (!in_array('sha256', hash_hmac_algos())) {
-                throw new \Exception('Algorithm SHA-256 is not available on this server');
-            }
-
             return base64_encode(hash_hmac('sha256', $str, $this->key, true));
         }
 
